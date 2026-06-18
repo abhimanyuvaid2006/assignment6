@@ -138,16 +138,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 }
 
-    // Event listeners for form submission and new player button
+     // Event listeners for form submission and new player button
     form.addEventListener("submit", handleFormSubmit);
     newPlayerButton.addEventListener("click", newPlayer);
 
     /**
-     * Handles the trivia form submission.
-     * @param {Event} event - The submit event.
+     * Handles the trivia form submission
+     * @param {Event} event - The submit event
      */
     function handleFormSubmit(event) {
         event.preventDefault();
-        //... form submission logic including setting cookies and calculating score
+
+        const usernameInput = document.getElementById("username");
+        const username = usernameInput.value.trim();
+
+        // Set cookie if username is new
+        if (username != "" && getCookie("username") == "") {
+            setCookie("username", username, 365);
+        }
+
+    
     }
 });
