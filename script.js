@@ -20,14 +20,38 @@ async function saveScore(username, score) {
     }
 }
 
-// ← ADD THE FUNCTION ABOVE THIS LINE
 
 /**
- * Initializes the Trivia Game when the DOM is fully loaded.
+ * Retrieves and displays all saved scores in the table
+ * Reads scores from localStorage and updates the UI
  */
-document.addEventListener("DOMContentLoaded", function () {
-    // ... rest of your code
-});
+async function displayScores() {
+    try { 
+        // Get scores from localStorage or return empty array if none exist
+        const scores = JSON.parse(localStorage.getItem("scores")) || [];
+        const tableBody = document.querySelector("#score-table tbody");
+        
+        // Clear existing rows from the table
+        tableBody.innerHTML = "";
+
+        // Loop through each score and create table rows
+        scores.forEach((entry) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${entry.player}</td>
+                <td>${entry.score}/10</td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        console.log("Scores displayed successfully");
+    }
+    catch(error){
+        console.error("Failed to display scores:", error.message);
+    }
+}
+
+
 
 /**
  * Initializes the Trivia Game when the DOM is fully loaded.
