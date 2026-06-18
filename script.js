@@ -105,6 +105,27 @@ document.addEventListener("DOMContentLoaded", function () {
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
 
+    /**
+     *  Retrieves the value of a specific cookie by name
+     * @param {string} cname - The name of the cookie
+     * @returns {string} - The cookie value or empty string if not found
+     */
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
     // Event listeners for form submission and new player button
     form.addEventListener("submit", handleFormSubmit);
     newPlayerButton.addEventListener("click", newPlayer);
