@@ -138,11 +138,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 }
 
-     // Event listeners for form submission and new player button
     form.addEventListener("submit", handleFormSubmit);
     newPlayerButton.addEventListener("click", newPlayer);
-
+    
     /**
+     *  Calculates the user's score based on their answers
+     * Counts all checked radio buttons that have data-correct attribute
+     * @returns {number} - The total score (0-10)
+     */
+    function calculateScore() {
+        let score = 0;
+        const allRadios = document.querySelectorAll("input[type='radio']:checked");
+
+        allRadios.forEach((radio) => {
+            if (radio.hasAttribute("data-correct")) {
+                score++;
+            }
+        });
+
+        return score;
+    }
+
+
+    /**  
      * Handles the trivia form submission
      * @param {Event} event - The submit event
      */
