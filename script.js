@@ -1,4 +1,35 @@
 /**
+ * Saves the player's score to localStorage
+ * @param {string} username - The player's username
+ * @param {number} score - The player's score
+ */
+async function saveScore(username, score) {
+    try {
+        let scores = JSON.parse(localStorage.getItem("scores")) || [];
+        
+        scores.push({
+            player: username,
+            score: score
+        });
+
+        localStorage.setItem("scores", JSON.stringify(scores));
+        console.log("Score saved successfully");
+    }
+    catch(error){
+        console.error("Failed to save score:", error.message);
+    }
+}
+
+// ← ADD THE FUNCTION ABOVE THIS LINE
+
+/**
+ * Initializes the Trivia Game when the DOM is fully loaded.
+ */
+document.addEventListener("DOMContentLoaded", function () {
+    // ... rest of your code
+});
+
+/**
  * Initializes the Trivia Game when the DOM is fully loaded.
  */
 document.addEventListener("DOMContentLoaded", function () {
