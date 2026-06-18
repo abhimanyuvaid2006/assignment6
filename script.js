@@ -152,7 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const usernameInput = document.getElementById("username");
         const username = usernameInput.value.trim();
 
-        // Set cookie if username is new
         if (username != "" && getCookie("username") == "") {
             setCookie("username", username, 365);
         }
