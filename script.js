@@ -27,14 +27,14 @@ async function saveScore(username, score) {
  */
 async function displayScores() {
     try { 
-        // Get scores from localStorage or return empty array if none exist
+       
         const scores = JSON.parse(localStorage.getItem("scores")) || [];
         const tableBody = document.querySelector("#score-table tbody");
         
-        // Clear existing rows from the table
+        
         tableBody.innerHTML = "";
 
-        // Loop through each score and create table rows
+        
         scores.forEach((entry) => {
             const row = document.createElement("tr");
             row.innerHTML = `
