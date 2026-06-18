@@ -214,21 +214,32 @@ document.addEventListener("DOMContentLoaded", function () {
         return score;
     }
 
-
-    /**  
-     * Handles the trivia form submission
-     * @param {Event} event - The submit event
-     */
     function handleFormSubmit(event) {
-        event.preventDefault();
+    event.preventDefault();
 
-        const usernameInput = document.getElementById("username");
-        const username = usernameInput.value.trim();
+    const usernameInput = document.getElementById("username");
+    const username = usernameInput.value.trim();
 
-        if (username != "" && getCookie("username") == "") {
-            setCookie("username", username, 365);
-        }
-
-    
+    if (username != "" && getCookie("username") == "") {
+        setCookie("username", username, 365);
     }
+
+    const score = calculateScore();
+    saveScore(username, score);
+    displayScores();
+
+    newPlayerButton.classList.remove("hidden");
+
+    fetchQuestions();
+    form.reset();
+    }
+
+    function newPlayer() {
+    setCookie("username", "", -1);
+    document.getElementById("username").value = "";
+    newPlayerButton.classList.add("hidden");
+    fetchQuestions();
+}
+
+
 });
