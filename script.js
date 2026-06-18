@@ -92,6 +92,19 @@ document.addEventListener("DOMContentLoaded", function () {
             .join("");
     }
 
+    /**
+     * Stores a cookie with a name, value, and expiration days
+     * @param {string} cname - The name of the cookie
+     * @param {string} cvalue - The value to store
+     * @param {number} exdays - Number of days until cookie expires
+     */
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
     // Event listeners for form submission and new player button
     form.addEventListener("submit", handleFormSubmit);
     newPlayerButton.addEventListener("click", newPlayer);
